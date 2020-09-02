@@ -1,11 +1,15 @@
 <h1>AjaxApp</h1>
-<%= form_with url:  "/posts", method: :post,id: "form" do |form| %>
+<%= form_with url: "/posts", method: :post,id: "form" do |form| %>
   <%= form.text_field :content %>
   <%= form.submit '投稿する' , id: "submit" %>
 <% end %>
-
 <% @posts.each do |post| %>
-  <div class="post">
+  <%############################%>
+　<%# 0.既読にしたい要素を記述       %>
+  <%############################%>
+  <div class="post" data-id=<%= post.id %> data-check=<%= post.checked %>>
+  <%# 上のdata-id data-checkは、jsファイルの為にここで定義したデータ。いわゆるカスタムデータ %>
+  <%# カスタムデータ自体は、Javascriptに必須なものではないが、Javascriptを使用する際に、自分でカスタマイズした任意の情報があると便利。 %>
     <div class="post-date">
       投稿日時：<%= post.created_at %>
     </div>
